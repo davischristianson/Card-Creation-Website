@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|c:\\users\\keje1\\cptc quarter 5\\advanced .net web programming\\card-creation-website\\card-creation-website\\views\\card\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|solutionrelative:card-creation-website\\views\\card\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|c:\\users\\keje1\\cptc quarter 5\\advanced .net web programming\\card-creation-website\\card-creation-website\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|solutionrelative:card-creation-website\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|c:\\users\\keje1\\cptc quarter 5\\advanced .net web programming\\card-creation-website\\card-creation-website\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|solutionrelative:card-creation-website\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|c:\\users\\keje1\\cptc quarter 5\\advanced .net web programming\\card-creation-website\\card-creation-website\\models\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|solutionrelative:card-creation-website\\models\\card.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|c:\\users\\keje1\\cptc quarter 5\\advanced .net web programming\\card-creation-website\\card-creation-website\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|solutionrelative:card-creation-website\\models\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|c:\\users\\keje1\\cptc quarter 5\\advanced .net web programming\\card-creation-website\\card-creation-website\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2A58019A-8590-41CA-BA7E-3B93300E4A58}|Card-Creation-Website\\Card-Creation-Website.csproj|solutionrelative:card-creation-website\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +34,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Views\\Card\\Create.cshtml",
+              "RelativeDocumentMoniker": "Card-Creation-Website\\Views\\Card\\Create.cshtml",
+              "ToolTip": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Views\\Card\\Create.cshtml",
+              "RelativeToolTip": "Card-Creation-Website\\Views\\Card\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T18:56:12.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Program.cs",
+              "RelativeDocumentMoniker": "Card-Creation-Website\\Program.cs",
+              "ToolTip": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Program.cs",
+              "RelativeToolTip": "Card-Creation-Website\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAADAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T17:22:56.034Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -26,6 +77,70 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Card.cs",
+              "DocumentMoniker": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Models\\Card.cs",
+              "RelativeDocumentMoniker": "Card-Creation-Website\\Models\\Card.cs",
+              "ToolTip": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Models\\Card.cs",
+              "RelativeToolTip": "Card-Creation-Website\\Models\\Card.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T03:47:44.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Card-Creation-Website\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Card-Creation-Website\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-22T03:21:46.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Card-Creation-Website\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Card-Creation-Website\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T02:48:16.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Models\\Account.cs",
+              "RelativeDocumentMoniker": "Card-Creation-Website\\Models\\Account.cs",
+              "ToolTip": "C:\\Users\\keje1\\CPTC Quarter 5\\Advanced .Net Web Programming\\Card-Creation-Website\\Card-Creation-Website\\Models\\Account.cs",
+              "RelativeToolTip": "Card-Creation-Website\\Models\\Account.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T02:40:10.523Z",
+              "EditorCaption": ""
             }
           ]
         }
