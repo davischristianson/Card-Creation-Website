@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Card-Creation-Website")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cab809d3e80337b0a00fc32248a9a530e0ffce6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1f4616aedda9a571c3ffdf3a0be0851b0f5397d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Card-Creation-Website")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Card-Creation-Website")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
