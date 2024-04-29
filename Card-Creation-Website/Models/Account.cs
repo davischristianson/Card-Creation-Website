@@ -27,12 +27,12 @@ namespace Card_Creation_Website.Models
         public string Password { get; set; }
 
         /// <summary>
-        /// User's first name
+        /// User's legal first name
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// User's last name
+        /// User's legal last name
         /// </summary>
         public string LastName { get; set; }
 
@@ -43,13 +43,15 @@ namespace Card_Creation_Website.Models
         public string Email { get; set; }
 
         /// <summary>
-        /// User's date of birth
+        /// User's legal date of birth
         /// </summary>
         [Required]
         public DateOnly DateOfBirth { get; set; }
 
         /// <summary>
-        /// User's phone numberss
+        /// User's phone number
+        /// Should be stored as 1234567890
+        /// Displayed as 123-456-7890
         /// </summary>
         public string PhoneNumber { get; set; }
     }
