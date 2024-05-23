@@ -18,6 +18,7 @@ namespace Card_Creation_Website.Models
         /// Username for the user's account
         /// </summary>
         [Required]
+        [Display(Name = "Username")]
         public string Username { get; set; }
 
         /// <summary>
@@ -29,11 +30,13 @@ namespace Card_Creation_Website.Models
         /// <summary>
         /// User's legal first name
         /// </summary>
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// User's legal last name
         /// </summary>
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         /// <summary>
@@ -46,6 +49,7 @@ namespace Card_Creation_Website.Models
         /// User's legal date of birth
         /// </summary>
         [Required]
+        [Display(Name = "Date Of Birth")]
         public DateOnly DateOfBirth { get; set; }
 
         /// <summary>
@@ -53,6 +57,46 @@ namespace Card_Creation_Website.Models
         /// Should be stored as 1234567890
         /// Displayed as 123-456-7890
         /// </summary>
+        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+    }
+
+    public class RegisterViewModel
+    {
+        [Required]
+        [StringLength(50)]
+        public string Username { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [StringLength(100)]
+        public string Email { get; set; }
+
+        [Required]
+        [Compare(nameof(Email))]
+        [Display(Name = "Confirm Email")]
+        public string ConfirmEmail { get; set; }
+
+        [Required]
+        [StringLength(75, MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare(nameof(Password))]
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }
