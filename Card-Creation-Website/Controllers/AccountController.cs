@@ -90,13 +90,11 @@ namespace Card_Creation_Website.Controllers
         public IActionResult LogoutAccount()
         {
             HttpContext.Session.Clear();
-            TempData["Message"] = "You have successfully logged out!";
             return RedirectToAction("Index", "Home");
         }
 
 
 
-        [HttpGet]
         public async Task<IActionResult> DeleteAccount(int userId)
         {
             Account? accountToDelete = await _context.Accounts.FindAsync(userId);
@@ -118,11 +116,9 @@ namespace Card_Creation_Website.Controllers
             {
                 _context.Accounts.Remove(accountToDelete);
                 await _context.SaveChangesAsync();
-                TempData["Message"] = " Your account was deleted successfully!";
                 return RedirectToAction("Index", "Home");
             }
 
-            TempData["Message"] = "This account was already deleted!";
             return RedirectToAction("Index");
         }
 
