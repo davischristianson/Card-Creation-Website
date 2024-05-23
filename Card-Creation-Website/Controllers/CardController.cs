@@ -22,26 +22,28 @@ namespace Card_Creation_Website.Controllers
             return View(cards);
         }
 
-
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult CreateCard()
         {
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(Card cardToCreate)
+        [HttpGet]
+        public IActionResult UpdateCard()
         {
-            if(ModelState.IsValid)
-            {
-                _context.Cards.Add(cardToCreate); // Prepares Insert
-                await _context.SaveChangesAsync();
+            return View();
+        }
 
-                ViewData["Message"] = $"{cardToCreate.CardName} was added successfully!";
-                return View();
-            }
+        [HttpGet]
+        public IActionResult DeleteCard()
+        {
+            return View();
+        }
 
-            return View(cardToCreate);
+        [HttpGet]
+        public IActionResult DetailsCard()
+        {
+            return View();
         }
     }
 }
