@@ -9,14 +9,16 @@ namespace Card_Creation_Website.Models
 
         /// <summary>
         /// The relation to the account that made the card.
-        /// This is a foreign key
+        /// This is a foreign key.
         /// </summary>
         public int UserId { get; set; }
 
         /// <summary>
-        /// This 
+        /// This is the required reference navigation to the Account class.
+        /// The != null means it must be related to an account, meaning a card 
+        /// has to be connected to an account.
         /// </summary>
-        public Account Account { get; set; }
+        public Account Account { get; set; } = null!;
 
         /// <summary>
         /// Name of the Card
