@@ -11,12 +11,6 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CardName)
         </dt>
         <dd class = "col-sm-10">
@@ -97,6 +91,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.CardId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="UpdateCard" asp-route-id="@Model?.CardId">Edit Card</a> |
+    <a asp-action="IndexCard">Back to Card Collection</a>
 </div>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Card_Creation_Website.Models.Card>
+
+@{
+    ViewData["Title"] = "IndexCard";
+}
+
+<h1>Card Index</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p>
+    <a asp-action="CreateCard">Create New Card</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CardName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardEffect)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpellType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rarity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElementalType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attack)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Defense)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Health)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Card item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CardEffect)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpellType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rarity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElementalType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Defense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Health)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                <a asp-action="UpdateCard" asp-route-id="@item.CardId">Edit</a> |
+                <a asp-action="DetailsCard" asp-route-id="@item.CardId">Details</a> |
+                <a asp-action="DeleteCard" asp-route-id="@item.CardId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
