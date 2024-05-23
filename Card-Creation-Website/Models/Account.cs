@@ -48,7 +48,6 @@ namespace Card_Creation_Website.Models
         /// <summary>
         /// User's legal date of birth
         /// </summary>
-        [Required]
         [Display(Name = "Date Of Birth")]
         public DateOnly DateOfBirth { get; set; }
 
