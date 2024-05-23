@@ -28,5 +28,23 @@ namespace Card_Creation_Website.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult DeleteAccount()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult DetailsAccount()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult UpdateAccount()
+        {
+            return View();
+        }
     }
 }
