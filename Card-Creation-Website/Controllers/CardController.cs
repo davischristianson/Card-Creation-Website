@@ -21,6 +21,8 @@ namespace Card_Creation_Website.Controllers
 
             return View(cards);
         }
+        
+
 
         [HttpGet]
         public IActionResult CreateCard()
@@ -28,22 +30,92 @@ namespace Card_Creation_Website.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult UpdateCard()
+        [HttpPost]
+        public async Task<IActionResult> CreateCard(Card cardToCreate)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                _context.Cards.Add(cardToCreate);
+                await _context.SaveChangesAsync();
+
+                ViewData["Message"] = $"{cardToCreate.CardName} was added successfully!";
+                return View();
+            }
+
+            return View(cardToCreate);
         }
 
-        [HttpGet]
-        public IActionResult DeleteCard()
+
+
+        public async Task<IActionResult> UpdateCard(int id)
         {
-            return View();
+            Card cardToCreate = await _context.Cards.FindAsync(id);
+
+            if(cardToCreate == null)
+            {
+                return NotFound();
+            }
+
+            return View(cardToCreate);
         }
 
-        [HttpGet]
-        public IActionResult DetailsCard()
+        [HttpPost]
+        public async Task<IActionResult> UpdateCard(Card cardModel)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                _context.Cards.Update(cardModel);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = $"{cardModel.CardName} was updated successfully!";
+                return RedirectToAction("IndexCard");
+            }
+            return View(cardModel);
+        }
+
+
+
+        public async Task<IActionResult> DeleteCard(int id)
+        {
+            Card? cardToDelete = await _context.Cards.FindAsync(id);
+
+            if(cardToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return View(cardToDelete);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Card cardToDelete = await _context.Cards.FindAsync(id);
+
+            if(cardToDelete == null)
+            {
+                _context.Cards.Remove(cardToDelete);
+                await _context.SaveChangesAsync();
+                TempData["Message"] = cardToDelete.CardName + " was deleted successfully!";
+                return RedirectToAction("IndexCard");
+            }
+
+            TempData["Message"] = "This card was already deleted!";
+            return RedirectToAction("IndexCard");
+        }
+
+
+
+        public async Task<IActionResult> Details(int id)
+        {
+            Card? cardDetails = await _context.Cards.FindAsync(id);
+
+            if(cardDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(cardDetails);
         }
     }
 }
