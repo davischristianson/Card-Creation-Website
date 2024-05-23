@@ -24,7 +24,7 @@ namespace Card_Creation_Website.Controllers
 
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult LoginAccount()
         {
             return View();
         }
