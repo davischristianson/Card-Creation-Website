@@ -16,11 +16,41 @@ namespace Card_Creation_Website.Controllers
         }
 
 
+
         [HttpGet]
         public IActionResult CreateAccount()
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAccount(RegisterViewModel registerViewModel)
+        {
+            if(ModelState.IsValid)
+            {
+                // Map the RegisterViewModel data to Account Object
+                Account newAccount = new Account()
+                {
+                    Username = registerViewModel.Username,
+                    Email = registerViewModel.Email,
+                    Password = registerViewModel.Password,
+                };
+
+                _context.Accounts.Add(newAccount);
+                await _context.SaveChangesAsync();
+
+                LogUserIn(registerViewModel.Email);
+            }
+
+            // Redirect to home page
+            return RedirectToAction("Index", "Home");
+        }
+
+        private void LogUserIn(string email)
+        {
+            HttpContext.Session.SetString("Email", email);
+        }
+
 
 
         [HttpGet]
@@ -29,17 +59,57 @@ namespace Card_Creation_Website.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult LoginAccount(LoginViewModel loginViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Check Db for credentials
+                Account? a = (from account in  _context.Accounts
+                                    where account.Email == loginViewModel.Email &&
+                                    account.Password == loginViewModel.Password
+                                    select account).SingleOrDefault();
+
+                // If the account exists, send to the home page
+                if (a != null)
+                {
+                    LogUserIn(loginViewModel.Email);
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Credentials not found!");
+            }
+            // Return if no record found, or the ModelState is invalid
+            return View(loginViewModel);
+        }
+
+
+
+        [HttpGet]
+        public IActionResult LogoutAccount()
+        {
+            HttpContext.Session.Clear();
+            TempData["Message"] = "You have successfully logged out!";
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
         [HttpGet]
         public IActionResult DeleteAccount()
         {
             return View();
         }
 
+
+
         [HttpGet]
         public IActionResult DetailsAccount()
         {
             return View();
         }
+
+
 
         [HttpGet]
         public IActionResult UpdateAccount()
