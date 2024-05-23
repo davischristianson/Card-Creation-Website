@@ -1,13 +1,12 @@
 ﻿@model Card_Creation_Website.Models.Account
 
 @{
-    ViewData["Title"] = "DetailsAccount";
+    ViewData["Title"] = "Details Account";
 }
 
-<h1>DetailsAccount</h1>
+<h1>Account Details</h1>
 
 <div>
-    <h4>Account</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -55,6 +54,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.UserId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="UpdateAccount" asp-route-id="@Model?.UserId">Update Account Details</a> |
+    <a asp-action="DeleteAccount">Delete Your Account</a>
 </div>
