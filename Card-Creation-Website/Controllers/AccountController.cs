@@ -96,10 +96,11 @@ namespace Card_Creation_Website.Controllers
 
 
 
-        public async Task<IActionResult> DeleteAccount(int userId)
+        public async Task<IActionResult> DeleteAccount(int id)
         {
-            Account? accountToDelete = await _context.Accounts.FindAsync(userId);
-
+            System.Diagnostics.Debug.WriteLine($"UserId: {id}");
+            Account? accountToDelete = await _context.Accounts.FindAsync(id);
+            
             if (accountToDelete == null)
             {
                 return NotFound();
@@ -120,7 +121,7 @@ namespace Card_Creation_Website.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
 
