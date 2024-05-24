@@ -2,6 +2,7 @@
 using Card_Creation_Website.Data;
 using Card_Creation_Website.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
@@ -110,7 +111,7 @@ namespace Card_Creation_Website.Controllers
         [HttpPost, ActionName("DeleteAccount")]
         public async Task<IActionResult> DeleteConfirmed(int userId)
         {
-            Account accountToDelete = await _context.Accounts.FindAsync();
+            Account accountToDelete = await _context.Accounts.FindAsync(userId);
 
             if (accountToDelete != null)
             {

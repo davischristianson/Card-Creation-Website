@@ -1,5 +1,6 @@
 ﻿@model Card_Creation_Website.Models.Account
 
+
 @{
     ViewData["Title"] = "Details Account";
 }
@@ -9,6 +10,12 @@
 <div>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Username)
         </dt>
@@ -55,5 +62,5 @@
 </div>
 <div>
     <a asp-action="UpdateAccount" asp-route-id="@Model?.UserId">Update Account Details</a> |
-    <a asp-action="DeleteAccount">Delete Your Account</a>
+    <a asp-action="DeleteAccount" asp-route-id="@Model?.UserId">Delete Your Account</a>
 </div>
