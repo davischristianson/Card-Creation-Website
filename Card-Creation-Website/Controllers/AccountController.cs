@@ -128,15 +128,22 @@ namespace Card_Creation_Website.Controllers
 
 
         [HttpGet]
-        public IActionResult DetailsAccount()
+        public async Task<IActionResult> DetailsAccount(int id)
         {
-            return View();
+            Account? accountDetails = await _context.Accounts.FindAsync(id);
+
+            if(accountDetails == null)
+            {
+                return NotFound();
+            }
+
+            return View(accountDetails);
         }
 
 
 
         [HttpGet]
-        public IActionResult UpdateAccount()
+        public async Task<IActionResult> UpdateAccount(int id)
         {
             return View();
         }
