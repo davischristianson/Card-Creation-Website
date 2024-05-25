@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Card_Creation_Website.Migrations
 {
     [DbContext(typeof(CardCreationContext))]
-    [Migration("20240525005125_UpdatedDb")]
-    partial class UpdatedDb
+    [Migration("20240525031430_NewDatabase")]
+    partial class NewDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,7 @@ namespace Card_Creation_Website.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
@@ -123,7 +124,25 @@ namespace Card_Creation_Website.Migrations
 
                     b.HasKey("CardId");
 
+                    b.HasIndex("AccountId");
+
                     b.ToTable("Cards");
+                });
+
+            modelBuilder.Entity("Card_Creation_Website.Models.Card", b =>
+                {
+                    b.HasOne("Card_Creation_Website.Models.Account", "Account")
+                        .WithMany("Cards")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Card_Creation_Website.Models.Account", b =>
+                {
+                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }

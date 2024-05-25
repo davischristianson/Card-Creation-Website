@@ -5,7 +5,7 @@
 namespace Card_Creation_Website.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdatedDb : Migration
+    public partial class NewDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
