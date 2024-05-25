@@ -12,7 +12,7 @@ namespace Card_Creation_Website.Models
         /// Main UserID auto generated
         /// </summary>
         [Key]
-        public int UserId { get; set; }
+        public int AccountId { get; set; }
 
         /// <summary>
         /// Username for the user's account

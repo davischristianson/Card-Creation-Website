@@ -11,10 +11,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.AccountId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserId)
+            @Html.DisplayFor(model => model.AccountId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Username)
@@ -61,6 +61,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="UpdateAccount" asp-route-id="@Model?.UserId">Update Account Details</a> |
-    <a asp-action="DeleteAccount" asp-route-id="@Model?.UserId">Delete Your Account</a>
+    <a asp-action="UpdateAccount" asp-route-id="@Model?.AccountId">Update Account Details</a> |
+    <a asp-action="DeleteAccount" asp-route-id="@Model?.AccountId">Delete Your Account</a>
 </div>
