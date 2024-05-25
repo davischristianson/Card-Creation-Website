@@ -98,7 +98,6 @@ namespace Card_Creation_Website.Controllers
 
         public async Task<IActionResult> DeleteAccount(int id)
         {
-            System.Diagnostics.Debug.WriteLine($"UserId: {id}");
             Account? accountToDelete = await _context.Accounts.FindAsync(id);
 
             if (accountToDelete == null)
