@@ -31,13 +31,13 @@ namespace Card_Creation_Website.Models
         /// User's legal first name
         /// </summary>
         [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// User's legal last name
         /// </summary>
         [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// Email for the user's account
@@ -48,7 +48,6 @@ namespace Card_Creation_Website.Models
         /// <summary>
         /// User's legal date of birth
         /// </summary>
-        [Required]
         [Display(Name = "Date Of Birth")]
         public DateOnly DateOfBirth { get; set; }
 

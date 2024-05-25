@@ -1,5 +1,6 @@
 ﻿@model Card_Creation_Website.Models.Account
 
+
 @{
     ViewData["Title"] = "Details Account";
 }
@@ -55,5 +56,5 @@
 </div>
 <div>
     <a asp-action="UpdateAccount" asp-route-id="@Model?.AccountId">Update Account Details</a> |
-    <a asp-action="DeleteAccount">Delete Your Account</a>
+    <a asp-action="DeleteAccount" asp-route-id="@Model?.AccountId">Delete Your Account</a>
 </div>
