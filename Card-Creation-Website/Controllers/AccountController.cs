@@ -26,7 +26,7 @@ namespace Card_Creation_Website.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAccount(RegisterViewModel registerViewModel)
+        public async Task<IActionResult> CreateAccount(RegisterViewModel registerViewModel, Account id)
         {
             if (ModelState.IsValid)
             {
@@ -41,16 +41,21 @@ namespace Card_Creation_Website.Controllers
                 _context.Accounts.Add(newAccount);
                 await _context.SaveChangesAsync();
 
-                LogUserIn(registerViewModel.Email);
+                Account loggedUser = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == registerViewModel.Email);
+
+                int accountId = loggedUser.AccountId;
+
+                LogUserIn(registerViewModel.Email, accountId);
             }
 
             // Redirect to home page
             return RedirectToAction("Index", "Home");
         }
 
-        private void LogUserIn(string email)
+        private void LogUserIn(string email, int id)
         {
             HttpContext.Session.SetString("Email", email);
+            HttpContext.Session.SetInt32("Id", id);
         }
 
 
@@ -62,7 +67,7 @@ namespace Card_Creation_Website.Controllers
         }
 
         [HttpPost]
-        public IActionResult LoginAccount(LoginViewModel loginViewModel)
+        public async Task<IActionResult> LoginAccount(LoginViewModel loginViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -72,10 +77,15 @@ namespace Card_Creation_Website.Controllers
                               account.Password == loginViewModel.Password
                               select account).SingleOrDefault();
 
+                Account loggedUser = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == loginViewModel.Email);
+
+                int accountId = loggedUser.AccountId;
+
                 // If the account exists, send to the home page
                 if (a != null)
                 {
-                    LogUserIn(loginViewModel.Email);
+
+                    LogUserIn(loginViewModel.Email, accountId);
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -117,6 +127,9 @@ namespace Card_Creation_Website.Controllers
             {
                 _context.Accounts.Remove(accountToDelete);
                 await _context.SaveChangesAsync();
+
+                LogoutAccount();
+
                 return RedirectToAction("Index", "Home");
             }
 
@@ -127,9 +140,11 @@ namespace Card_Creation_Website.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> DetailsAccount(int id)
+        public async Task<IActionResult> DetailsAccount()
         {
-            Account? accountDetails = await _context.Accounts.FindAsync(id);
+            int? accountId = HttpContext.Session.GetInt32("Id");
+
+            Account? accountDetails = await _context.Accounts.FindAsync(accountId);
 
             if (accountDetails == null)
             {
@@ -141,7 +156,6 @@ namespace Card_Creation_Website.Controllers
 
 
 
-        [HttpGet]
         public async Task<IActionResult> UpdateAccount(int id)
         {
             Account accountToEdit = await _context.Accounts.FindAsync(id);
@@ -151,7 +165,7 @@ namespace Card_Creation_Website.Controllers
                 return NotFound();
             }
 
-            return View(id);
+            return View(accountToEdit);
         }
 
         [HttpPost]

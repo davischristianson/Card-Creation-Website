@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
+@model Card_Creation_Website.Models.Account
 @inject IHttpContextAccessor _httpContext
 
 <!DOCTYPE html>
@@ -30,6 +31,7 @@
                         </li>
                         @{
                             string? userEmail = _httpContext.HttpContext.Session.GetString("Email");
+                            int? userId = _httpContext.HttpContext.Session.GetInt32("Id");
                         }
                         @if(userEmail == null)
                         {
