@@ -28,7 +28,7 @@ namespace Card_Creation_Website.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAccount(RegisterViewModel registerViewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Map the RegisterViewModel data to Account Object
                 Account newAccount = new Account()
@@ -67,10 +67,10 @@ namespace Card_Creation_Website.Controllers
             if (ModelState.IsValid)
             {
                 // Check Db for credentials
-                Account? a = (from account in  _context.Accounts
-                                    where account.Email == loginViewModel.Email &&
-                                    account.Password == loginViewModel.Password
-                                    select account).SingleOrDefault();
+                Account? a = (from account in _context.Accounts
+                              where account.Email == loginViewModel.Email &&
+                              account.Password == loginViewModel.Password
+                              select account).SingleOrDefault();
 
                 // If the account exists, send to the home page
                 if (a != null)
@@ -100,7 +100,7 @@ namespace Card_Creation_Website.Controllers
         {
             System.Diagnostics.Debug.WriteLine($"UserId: {id}");
             Account? accountToDelete = await _context.Accounts.FindAsync(id);
-            
+
             if (accountToDelete == null)
             {
                 return NotFound();
@@ -110,9 +110,9 @@ namespace Card_Creation_Website.Controllers
         }
 
         [HttpPost, ActionName("DeleteAccount")]
-        public async Task<IActionResult> DeleteConfirmed(int userId)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Account accountToDelete = await _context.Accounts.FindAsync(userId);
+            Account accountToDelete = await _context.Accounts.FindAsync(id);
 
             if (accountToDelete != null)
             {
@@ -132,7 +132,7 @@ namespace Card_Creation_Website.Controllers
         {
             Account? accountDetails = await _context.Accounts.FindAsync(id);
 
-            if(accountDetails == null)
+            if (accountDetails == null)
             {
                 return NotFound();
             }
@@ -145,7 +145,28 @@ namespace Card_Creation_Website.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateAccount(int id)
         {
-            return View();
+            Account accountToEdit = await _context.Accounts.FindAsync(id);
+
+            if (accountToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return View(id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAccount(Account accountModel)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Accounts.Update(accountModel);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("DetailsAccount", "Account");
+            }
+
+            return View(accountModel);
         }
     }
 }
