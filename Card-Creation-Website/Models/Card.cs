@@ -7,7 +7,7 @@ namespace Card_Creation_Website.Models
         [Key]
         public int CardId { get; set; }
 
-        public int UserId { get; set; }
+        public int AccountId { get; set; }
 
         [Required]
         [Display(Name = "Card Name")]
