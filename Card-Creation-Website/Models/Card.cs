@@ -11,7 +11,7 @@ namespace Card_Creation_Website.Models
         /// The relation to the account that made the card.
         /// This is a foreign key.
         /// </summary>
-        public int UserId { get; set; }
+        public int AccountId { get; set; }
 
         /// <summary>
         /// This is the required reference navigation to the Account class.
