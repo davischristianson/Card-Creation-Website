@@ -79,12 +79,11 @@ namespace Card_Creation_Website.Controllers
 
                 Account loggedUser = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == loginViewModel.Email);
 
-                int accountId = loggedUser.AccountId;
 
                 // If the account exists, send to the home page
                 if (a != null)
                 {
-
+                    int accountId = loggedUser.AccountId;
                     LogUserIn(loginViewModel.Email, accountId);
                     return RedirectToAction("Index", "Home");
                 }
