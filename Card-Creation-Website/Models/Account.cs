@@ -57,7 +57,7 @@ namespace Card_Creation_Website.Models
         /// Displayed as 123-456-7890
         /// </summary>
         [Display(Name = "Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// This is a collection of the multiple cards.
