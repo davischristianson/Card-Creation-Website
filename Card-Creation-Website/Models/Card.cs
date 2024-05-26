@@ -15,7 +15,7 @@ namespace Card_Creation_Website.Models
 
         /// <summary>
         /// This is the required reference navigation to the Account class.
-        /// The != null means it must be related to an account, meaning a card 
+        /// The = null means it must be related to an account, meaning a card 
         /// has to be connected to an account.
         /// </summary>
         public Account Account { get; set; } = null!;
