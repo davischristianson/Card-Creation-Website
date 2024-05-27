@@ -2,6 +2,7 @@
 using Card_Creation_Website.Models;
 using Card_Creation_Website.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 
 namespace Card_Creation_Website.Controllers
@@ -27,13 +28,31 @@ namespace Card_Creation_Website.Controllers
         [HttpGet]
         public IActionResult CreateCard()
         {
+
+
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateCard(Card cardToCreate)
         {
-            if(ModelState.IsValid)
+            int? accountId = HttpContext.Session.GetInt32("Id");
+
+            Account accountCard = await _context.Accounts.FindAsync(accountId);
+
+            cardToCreate.Account = accountCard;
+            cardToCreate.AccountId = accountCard.AccountId;
+
+            // To ignore the ModelState validation on the form data for the 
+            // Card class account property. This helps ignore the error that occurs since
+            // that specific property always gets treated as null even if its added
+            // to the card object being created. 
+            if (cardToCreate.Account != null)
+            {
+                ModelState.Remove("Account");
+            }
+
+            if (ModelState.IsValid)
             {
                 _context.Cards.Add(cardToCreate);
                 await _context.SaveChangesAsync();
