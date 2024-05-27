@@ -30,7 +30,7 @@
                         </li>
                         @{
                             string? userEmail = _httpContext.HttpContext.Session.GetString("Email");
-                            int? userId = _httpContext.HttpContext.Session.GetInt32("Id");
+                            int? accountId = _httpContext.HttpContext.Session.GetInt32("Id");
                         }
                         @if(userEmail == null)
                         {

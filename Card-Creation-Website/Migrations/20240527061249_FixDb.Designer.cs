@@ -12,26 +12,26 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Card_Creation_Website.Migrations
 {
     [DbContext(typeof(CardCreationContext))]
-    [Migration("20240523214154_InitializationPart2")]
-    partial class InitializationPart2
+    [Migration("20240527061249_FixDb")]
+    partial class FixDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Card_Creation_Website.Models.Account", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("AccountId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountId"));
 
                     b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
@@ -41,11 +41,9 @@ namespace Card_Creation_Website.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -53,14 +51,13 @@ namespace Card_Creation_Website.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("AccountId");
 
                     b.ToTable("Accounts");
                 });
@@ -73,7 +70,7 @@ namespace Card_Creation_Website.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CardId"));
 
-                    b.Property<int>("AccountUserId")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<int>("Attack")
@@ -124,12 +121,9 @@ namespace Card_Creation_Website.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("CardId");
 
-                    b.HasIndex("AccountUserId");
+                    b.HasIndex("AccountId");
 
                     b.ToTable("Cards");
                 });
@@ -138,7 +132,7 @@ namespace Card_Creation_Website.Migrations
                 {
                     b.HasOne("Card_Creation_Website.Models.Account", "Account")
                         .WithMany("Cards")
-                        .HasForeignKey("AccountUserId")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -9,7 +9,7 @@ namespace Card_Creation_Website.Models
     public class Account
     {
         /// <summary>
-        /// Main UserID auto generated
+        /// Main AccountId auto generated
         /// </summary>
         [Key]
         public int AccountId { get; set; }
@@ -64,7 +64,7 @@ namespace Card_Creation_Website.Models
         /// Represents the to many side of the relationship.
         /// Collection navigation containing dependents.
         /// </summary>
-        public ICollection<Card> Cards { get; } = new List<Card>();
+        public ICollection<Card> Cards { get; set; }
     }
 
     public class RegisterViewModel

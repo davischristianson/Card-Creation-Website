@@ -5,7 +5,7 @@
 namespace Card_Creation_Website.Migrations
 {
     /// <inheritdoc />
-    public partial class InitializationPart2 : Migration
+    public partial class FixDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
