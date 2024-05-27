@@ -8,19 +8,6 @@ namespace Card_Creation_Website.Models
         public int CardId { get; set; }
 
         /// <summary>
-        /// The relation to the account that made the card.
-        /// This is a foreign key.
-        /// </summary>
-        public int AccountId { get; set; }
-
-        /// <summary>
-        /// This is the required reference navigation to the Account class.
-        /// The = null means it must be related to an account, meaning a card 
-        /// has to be connected to an account.
-        /// </summary>
-        public Account Account { get; set; } = null!;
-
-        /// <summary>
         /// Name of the Card
         /// </summary>
         [Required]
@@ -125,5 +112,18 @@ namespace Card_Creation_Website.Models
         /// </summary>
         [Display(Name = "Serial Number")]
         public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// The relation to the account that made the card.
+        /// This is a foreign key.
+        /// </summary>
+        public int AccountId { get; set; }
+
+        /// <summary>
+        /// This is the required reference navigation to the Account class.
+        /// The = null means it must be related to an account, meaning a card 
+        /// has to be connected to an account.
+        /// </summary>
+        public Account Account { get; set; } = null!;
     }
 }
