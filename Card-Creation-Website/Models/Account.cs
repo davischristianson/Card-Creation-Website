@@ -64,7 +64,7 @@ namespace Card_Creation_Website.Models
         /// Represents the to many side of the relationship.
         /// Collection navigation containing dependents.
         /// </summary>
-        public ICollection<Card> Cards { get; set; }
+        public ICollection<Card> Cards { get; set; } = [];
     }
 
     public class RegisterViewModel

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Card_Creation_Website.Migrations
 {
     [DbContext(typeof(CardCreationContext))]
-    [Migration("20240526233402_NewCardCreationDb")]
-    partial class NewCardCreationDb
+    [Migration("20240603212148_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
