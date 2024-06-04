@@ -16,6 +16,8 @@ namespace Card_Creation_Website.Controllers
             _context = context;
         }
 
+
+
         public async Task<IActionResult> IndexCard()
         {
             List<Card> cards = await _context.Cards.ToListAsync();
@@ -28,8 +30,6 @@ namespace Card_Creation_Website.Controllers
         [HttpGet]
         public IActionResult CreateCard()
         {
-
-
             return View();
         }
 
@@ -81,15 +81,30 @@ namespace Card_Creation_Website.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCard(Card cardModel)
         {
-            if(ModelState.IsValid)
+            int? accountId = HttpContext.Session.GetInt32("Id");
+            cardModel.AccountId = (int)accountId;
+            Account accountCard = await _context.Accounts.FindAsync(accountId);
+            cardModel.Account = accountCard;
+
+
+            if (cardModel.AccountId != null)
             {
+                ModelState.Remove("Account");
+            }
+
+            if (ModelState.IsValid)
+            {
+                //Account accountCard = await _context.Accounts.FindAsync(accountId);
+
+                //cardModel.Account = accountCard;
+
                 _context.Cards.Update(cardModel);
                 await _context.SaveChangesAsync();
 
                 TempData["Message"] = $"{cardModel.CardName} was updated successfully!";
                 return RedirectToAction("IndexCard");
             }
-            return View(cardModel);
+            return RedirectToAction("DetailsCard");
         }
 
 
@@ -106,12 +121,12 @@ namespace Card_Creation_Website.Controllers
             return View(cardToDelete);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteCard")] 
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Card cardToDelete = await _context.Cards.FindAsync(id);
 
-            if(cardToDelete == null)
+            if(cardToDelete != null)
             {
                 _context.Cards.Remove(cardToDelete);
                 await _context.SaveChangesAsync();
@@ -125,7 +140,7 @@ namespace Card_Creation_Website.Controllers
 
 
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> DetailsCard(int id)
         {
             Card? cardDetails = await _context.Cards.FindAsync(id);
 
