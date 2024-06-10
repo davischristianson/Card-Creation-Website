@@ -58,7 +58,7 @@ namespace Card_Creation_Website.Controllers
                 await _context.SaveChangesAsync();
 
                 ViewData["Message"] = $"{cardToCreate.CardName} was added successfully!";
-                return View();
+                return RedirectToAction("IndexCard");
             }
 
             return View(cardToCreate);
