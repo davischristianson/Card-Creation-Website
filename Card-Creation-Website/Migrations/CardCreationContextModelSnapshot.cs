@@ -120,7 +120,25 @@ namespace Card_Creation_Website.Migrations
 
                     b.HasKey("CardId");
 
+                    b.HasIndex("AccountId");
+
                     b.ToTable("Cards");
+                });
+
+            modelBuilder.Entity("Card_Creation_Website.Models.Card", b =>
+                {
+                    b.HasOne("Card_Creation_Website.Models.Account", "Account")
+                        .WithMany("Cards")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Card_Creation_Website.Models.Account", b =>
+                {
+                    b.Navigation("Cards");
                 });
 #pragma warning restore 612, 618
         }

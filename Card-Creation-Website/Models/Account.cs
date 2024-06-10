@@ -9,7 +9,7 @@ namespace Card_Creation_Website.Models
     public class Account
     {
         /// <summary>
-        /// Main UserID auto generated
+        /// Main AccountId auto generated
         /// </summary>
         [Key]
         public int AccountId { get; set; }
@@ -58,6 +58,13 @@ namespace Card_Creation_Website.Models
         /// </summary>
         [Display(Name = "Phone Number")]
         public string? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// This is a collection of the multiple cards.
+        /// Represents the to many side of the relationship.
+        /// Collection navigation containing dependents.
+        /// </summary>
+        public ICollection<Card> Cards { get; set; } = [];
     }
 
     public class RegisterViewModel

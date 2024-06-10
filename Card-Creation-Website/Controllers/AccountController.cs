@@ -41,11 +41,13 @@ namespace Card_Creation_Website.Controllers
                 _context.Accounts.Add(newAccount);
                 await _context.SaveChangesAsync();
 
-                Account loggedUser = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == registerViewModel.Email);
+                
 
-                int accountId = loggedUser.AccountId;
+                //Account loggedUser = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == registerViewModel.Email);
 
-                LogUserIn(registerViewModel.Email, accountId);
+                //int accountId = loggedUser.AccountId;
+
+                LogUserIn(registerViewModel.Email, newAccount.AccountId);
             }
 
             // Redirect to home page
