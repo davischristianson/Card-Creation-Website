@@ -7,10 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<CardCreationContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IEmailProvider, EmailProviderSendGrid>();
 
 // Allow section access in Views
 // builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();\
