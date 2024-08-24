@@ -20,7 +20,17 @@ namespace Card_Creation_Website.Controllers
 
         public async Task<IActionResult> IndexCard()
         {
+            int? accountId = HttpContext.Session.GetInt32("Id");
+
             List<Card> cards = await _context.Cards.ToListAsync();
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if (cards[i].AccountId != accountId)
+                {
+                    cards.RemoveAt(i);
+                }
+            }
 
             return View(cards);
         }

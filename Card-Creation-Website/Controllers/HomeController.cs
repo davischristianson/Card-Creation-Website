@@ -17,7 +17,7 @@ namespace Card_Creation_Website.Controllers
 
         public async Task<IActionResult> Index()
         {
-            await _emailProvider.SendEmailAsync(null, null, null, null, null);
+            //await _emailProvider.SendEmailAsync(null, null, null, null, null);
             return View();
         }
 
