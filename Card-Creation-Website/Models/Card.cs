@@ -4,6 +4,9 @@ namespace Card_Creation_Website.Models
 {
     public class Card
     {
+        /// <summary> 
+        /// This is the primary Key for all the cards
+        /// </summary>
         [Key]
         public int CardId { get; set; }
 
