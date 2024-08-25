@@ -4,6 +4,7 @@ using Card_Creation_Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Drawing;
+using Card_Creation_Website.Services;
 
 
 namespace Card_Creation_Website.Controllers
@@ -11,10 +12,12 @@ namespace Card_Creation_Website.Controllers
     public class CardController : Controller
     {
         private readonly CardCreationContext _context;
+        private readonly AzureBlobService _blobService;
 
-        public CardController(CardCreationContext context)
+        public CardController(CardCreationContext context, AzureBlobService blobService)
         {
             _context = context;
+            _blobService = blobService;
         }
 
 
@@ -45,34 +48,42 @@ namespace Card_Creation_Website.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCard(Card cardToCreate)
+        public async Task<IActionResult> CreateCard(CombinedModel cardToCreate)
         {
+            // This is to grab the Image Url and then apply it to the card model
+            if(cardToCreate.ImageModel != null)
+            {
+                string imageUrl = await _blobService.UploadImageAsync(cardToCreate.ImageModel.ImageFile);
+                ViewBag.ImageUrl = imageUrl;
+                cardToCreate.CardModel.CardImage = imageUrl;
+            }
+
             int? accountId = HttpContext.Session.GetInt32("Id");
 
             Account accountCard = await _context.Accounts.FindAsync(accountId);
 
-            cardToCreate.Account = accountCard;
-            cardToCreate.AccountId = accountCard.AccountId;
+            cardToCreate.CardModel.Account = accountCard;
+            cardToCreate.CardModel.AccountId = accountCard.AccountId;
 
             // To ignore the ModelState validation on the form data for the 
             // Card class account property. This helps ignore the error that occurs since
             // that specific property always gets treated as null even if its added
             // to the card object being created. 
-            if (cardToCreate.Account != null)
+            if (cardToCreate.CardModel.Account != null)
             {
                 ModelState.Remove("Account");
             }
 
             if (ModelState.IsValid)
             {
-                _context.Cards.Add(cardToCreate);
+                _context.Cards.Add(cardToCreate.CardModel);
                 await _context.SaveChangesAsync();
 
-                ViewData["Message"] = $"{cardToCreate.CardName} was added successfully!";
+                ViewData["Message"] = $"{cardToCreate.CardModel.CardName} was added successfully!";
                 return RedirectToAction("IndexCard");
             }
 
-            return View(cardToCreate);
+            return View(cardToCreate.CardModel);
         }
 
 
