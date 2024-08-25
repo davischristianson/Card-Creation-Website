@@ -22,11 +22,14 @@
                 <input asp-for="CardModel.CardDescription" class="form-control" />
                 <span asp-validation-for="CardModel.CardDescription" class="text-danger"></span>
             </div>
-            <div>
-                <label class="control-label">Card Image</label>
+            <div class="form-group">
+                <!-- <label class="control-label">Card Image</label>
                 <input class="form-control" type="file" name="CardImage" accept=".jpg, .jpeg, .png">
-                <!-- <input asp-for="CardImage" class="form-control" /> -->
-                <!-- <span asp-validation-for="CardImage" class="text-danger"></span> -->
+                <input asp-for="CardImage" class="form-control" /> 
+                <span asp-validation-for="CardImage" class="text-danger"></span> -->
+                <label asp-for="ImageModel.ImageFile" class="control-label"></label>
+                <input asp-for="ImageModel.ImageFile" class="form-control" type="file" accept=".jpg, .jpeg, .png" />
+                <span asp-validation-for="ImageModel.ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CardModel.CardType" class="control-label"></label>
