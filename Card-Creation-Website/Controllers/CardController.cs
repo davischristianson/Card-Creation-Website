@@ -3,6 +3,7 @@ using Card_Creation_Website.Models;
 using Card_Creation_Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Card_Creation_Website.Migrations;
 
 
 namespace Card_Creation_Website.Controllers
@@ -26,13 +27,16 @@ namespace Card_Creation_Website.Controllers
 
             List<Card> cards = await _context.Cards.ToListAsync();
 
-            for (int i = 0; i < cards.Count; i++)
-            {
-                if (cards[i].AccountId != accountId)
-                {
-                    cards.RemoveAt(i);
-                }
-            }
+            cards.RemoveAll(Card => Card.AccountId != accountId);
+
+            //for (int i = 0; i < tempCards.Count; i++)
+            //{
+            //    if (tempCards[i].AccountId != accountId)
+            //    {
+            //        tempCards.RemoveAt(i);
+
+            //    }
+            //}
 
             return View(cards);
         }
@@ -66,30 +70,35 @@ namespace Card_Creation_Website.Controllers
 
             if (ModelState.IsValid)
             {
+                // To send a congratulations on the first card that was created associated with that account!
+                List<Card> cards = await _context.Cards.ToListAsync();
+
+                cards.RemoveAll(Card => Card.AccountId != accountId);
+
+                if (cards.Count == 0)
+                {
+                    // Email cannot be set just yet since legit emails aren't setup yet
+                    // string email = accountCard.Email
+                    // fromEmail must remain null since we don't want to be changing the sender yet
+                    // Subject can be implemented
+                    string subject = "First Card Made!";
+                    // Content can be implemented
+                    string content = "Congrats on making your card, and hopefully you make more to come. We " +
+                        "appreciate you using our service and make some really cool cards!";
+                    // htmlContent can be implemented
+                    string htmlContent = "<strong>We promise the best service! Please share any feedback you might have.<strong>";
+                    // Later once name is added to the method SendEmailAsync();
+                    // string fullName = accountCard.FirstName + " " + accountCard.LastName
+
+                    await _emailProvider.SendEmailAsync(null, null, subject, content, htmlContent);
+                }
+
+
                 _context.Cards.Add(cardToCreate);
                 await _context.SaveChangesAsync();
 
                 ViewData["Message"] = $"{cardToCreate.CardName} was added successfully!";
                 return RedirectToAction("IndexCard");
-            }
-
-            // To send a congratulations on the first card that was created associated with that account!
-            if(cardToCreate.CardId == 1)
-            {
-                // Email cannot be set just yet since legit emails aren't setup yet
-                // string email = accountCard.Email
-                // fromEmail must remain null since we don't want to be changing the sender yet
-                // Subject can be implemented
-                string subject = "First Card Made!";
-                // Content can be implemented
-                string content = "Congrats on making your card, and hopefully you make more to come. We " +
-                    "appreciate you using our service and make some really cool cards!";
-                // htmlContent can be implemented
-                string htmlContent = "<strong>We promise the best service! Please share any feedback you might have.<strong>";
-                // Later once name is added to the method SendEmailAsync();
-                // string fullName = accountCard.FirstName + " " + accountCard.LastName
-
-                await _emailProvider.SendEmailAsync(null, null, subject, content, htmlContent);
             }
 
             return View(cardToCreate);
