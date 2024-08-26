@@ -8,6 +8,17 @@ using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+    services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobStorage")));
+
+}
+
+
+
+
+
 // Add services to the container.
 builder.Services.AddDbContext<CardCreationContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -21,20 +32,21 @@ builder.Services.AddTransient<IEmailProvider, EmailProviderSendGrid>();
 // builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();\
 builder.Services.AddHttpContextAccessor();
 
+/*builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddBlobServiceClient(builder.Configuration["AzureBlobStorage:blob"]!, preferMsi: true);
+    clientBuilder.AddBlobServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage:blob"]!, preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["AzureBlobStorage:queue"]!, preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage:queue"]!, preferMsi: true);
+    clientBuilder.AddFileServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage"]);
+});
+builder.Services.AddScoped<AzureBlobService>();*/
+
+
 // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-7.0#configure-session-state
 // Add Session - Part 1 of 2
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
-
-builder.Services.AddAzureClients(clientBuilder =>
-{
-    // clientBuilder.AddBlobServiceClient(builder.Configuration["AzureBlobStorage:blob"]!, preferMsi: true);
-    clientBuilder.AddBlobServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage:blob"]!, preferMsi: true);
-    // clientBuilder.AddQueueServiceClient(builder.Configuration["AzureBlobStorage:queue"]!, preferMsi: true);
-    clientBuilder.AddQueueServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage:queue"]!, preferMsi: true);
-    clientBuilder.AddFileServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage"]);
-});
-// builder.Services.AddScoped<AzureBlobService>();
 
 
 var app = builder.Build();

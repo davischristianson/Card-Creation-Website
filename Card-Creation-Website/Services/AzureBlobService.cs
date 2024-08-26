@@ -7,29 +7,38 @@ namespace Card_Creation_Website.Services
     // https://www.youtube.com/watch?v=DzQ7CNnb9yM
     public class AzureBlobService
     {
-        private readonly string _connectionString;
-        private readonly string _containerName;
+        private readonly BlobServiceClient _azureBlobService;
 
-        public AzureBlobService(string connectionString, string containerName)
+        public AzureBlobService(BlobServiceClient azureBlobService)
         {
-            _connectionString = connectionString;
-            _containerName = containerName;
+            _azureBlobService = azureBlobService;
         }
 
-        public async Task<string> UploadImageAsync(IFormFile file)
+        public async Task<string> UploadFileAsync(string containerName, IFormFile file)
         {
-            BlobServiceClient blobServiceClient = new BlobServiceClient(_connectionString);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_containerName);
-
-            string blobName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            BlobClient blobClient = containerClient.GetBlobClient(blobName);
-
+            var containerClient = _azureBlobService.GetBlobContainerClient(containerName);
+            await containerClient.CreateIfNotExistsAsync();
+            var blobClient = containerClient.GetBlobClient(file.FileName);
             using (var stream = file.OpenReadStream())
             {
                 await blobClient.UploadAsync(stream, true);
             }
-
             return blobClient.Uri.ToString();
+        }
+
+
+        public async Task DownloadFileAsync(string containerName, string blobName, string downloadFilePath)
+        {
+            var containerClient = _azureBlobService.GetBlobContainerClient(containerName);
+            var blobClient = containerClient.GetBlobClient(blobName);
+            await blobClient.DownloadToAsync(downloadFilePath);
+        }
+
+        public async Task DeleteFileAsync(string containerName, string blobName)
+        {
+            var containerClient = _azureBlobService.GetBlobContainerClient(containerName);
+            var blobClient = containerClient.GetBlobClient(blobName);
+            await blobClient.DeleteIfExistsAsync();
         }
     }
 }

@@ -15,12 +15,10 @@ namespace Card_Creation_Website.Controllers
         private readonly CardCreationContext _context;
         private readonly AzureBlobService _blobService;
 
-        public CardController(CardCreationContext context, AzureBlobService blobService)
+        public CardController(CardCreationContext context)
         {
             _context = context;
-            _blobService = blobService;
         }
-
 
 
         public async Task<IActionResult> IndexCard()
@@ -51,14 +49,6 @@ namespace Card_Creation_Website.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCard(CombinedModel cardToCreate)
         {
-            // This is to grab the Image Url and then apply it to the card model
-            if(cardToCreate.ImageModel.ImageFile != null)
-            {
-                string imageUrl = await _blobService.UploadImageAsync(cardToCreate.ImageModel.ImageFile);
-                ViewBag.ImageUrl = imageUrl;
-                cardToCreate.CardModel.CardImage = imageUrl;
-            }
-
             int? accountId = HttpContext.Session.GetInt32("Id");
 
             Account accountCard = await _context.Accounts.FindAsync(accountId);
