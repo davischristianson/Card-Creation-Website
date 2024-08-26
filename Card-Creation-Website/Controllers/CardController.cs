@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Drawing;
 using Card_Creation_Website.Services;
+using Azure.Storage.Blobs;
 
 
 namespace Card_Creation_Website.Controllers
@@ -14,10 +15,10 @@ namespace Card_Creation_Website.Controllers
         private readonly CardCreationContext _context;
         private readonly AzureBlobService _blobService;
 
-        public CardController(CardCreationContext context, AzureBlobService blobService)
+        public CardController(CardCreationContext context) // , AzureBlobService blobService)
         {
             _context = context;
-            _blobService = blobService;
+            // _blobService = blobService;
         }
 
 

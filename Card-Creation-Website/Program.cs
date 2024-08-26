@@ -1,7 +1,9 @@
+using Azure.Storage.Blobs;
 using Card_Creation_Website.Data;
 using Card_Creation_Website.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Azure;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,7 @@ builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddBlobServiceClient(builder.Configuration["AzureBlobStorage:blob"]!, preferMsi: true);
     clientBuilder.AddQueueServiceClient(builder.Configuration["AzureBlobStorage:queue"]!, preferMsi: true);
+    clientBuilder.AddFileServiceClient(builder.Configuration["AzureBlobStorage"]);
 });
 
 var app = builder.Build();
