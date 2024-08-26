@@ -2,6 +2,9 @@
 
 namespace Card_Creation_Website.Services
 {
+    // Great youtube video the help explain azure blob storage better
+    // https://www.youtube.com/watch?v=GhlMa3jx_XA
+    // https://www.youtube.com/watch?v=DzQ7CNnb9yM
     public class AzureBlobService
     {
         private readonly string _connectionString;

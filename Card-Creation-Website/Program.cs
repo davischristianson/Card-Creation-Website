@@ -1,6 +1,7 @@
 using Azure.Storage.Blobs;
 using Card_Creation_Website.Data;
 using Card_Creation_Website.Models;
+using Card_Creation_Website.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Azure;
 using System.Configuration;
@@ -27,10 +28,14 @@ builder.Services.AddSession();
 
 builder.Services.AddAzureClients(clientBuilder =>
 {
-    clientBuilder.AddBlobServiceClient(builder.Configuration["AzureBlobStorage:blob"]!, preferMsi: true);
-    clientBuilder.AddQueueServiceClient(builder.Configuration["AzureBlobStorage:queue"]!, preferMsi: true);
-    clientBuilder.AddFileServiceClient(builder.Configuration["AzureBlobStorage"]);
+    // clientBuilder.AddBlobServiceClient(builder.Configuration["AzureBlobStorage:blob"]!, preferMsi: true);
+    clientBuilder.AddBlobServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage:blob"]!, preferMsi: true);
+    // clientBuilder.AddQueueServiceClient(builder.Configuration["AzureBlobStorage:queue"]!, preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage:queue"]!, preferMsi: true);
+    clientBuilder.AddFileServiceClient(builder.Configuration["ConnectionStrings:AzureBlobStorage"]);
 });
+// builder.Services.AddScoped<AzureBlobService>();
+
 
 var app = builder.Build();
 
