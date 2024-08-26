@@ -7,17 +7,14 @@ namespace Card_Creation_Website.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IEmailProvider _emailProvider;
 
-        public HomeController(ILogger<HomeController> logger, IEmailProvider emailProvider)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _emailProvider = emailProvider;
         }
 
         public async Task<IActionResult> Index()
         {
-            //await _emailProvider.SendEmailAsync(null, null, null, null, null);
             return View();
         }
 
