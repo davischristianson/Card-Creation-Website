@@ -1,4 +1,5 @@
-﻿using Card_Creation_Website.Services;
+﻿using Azure.Storage.Blobs;
+using Card_Creation_Website.Services;
 using EllipticCurve.Utils;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,21 +31,26 @@ namespace Card_Creation_Website.Controllers
         }
 
         
-        public IActionResult GetImageUrl(string blobName)
+        //public IActionResult GetImageUrl(string blobUrl)
+        //{
+        //    var secret = _configuration["ContainerName"];
+
+        //    var imageUrl = _azureBlobService.GetBlobUrl(secret, blobUrl);
+        //    // return Json(new { imageUrl });
+        //    return Content(imageUrl);
+        //}
+
+        //public BlobClient GetBlobClientFromUrl(string blobUrl)
+        //{
+        //    return new BlobClient(new Uri(blobUrl));
+        //}
+
+
+        public async Task<IActionResult> Delete(string blobUrl, string RTAName)
         {
             var secret = _configuration["ContainerName"];
 
-            var imageUrl = _azureBlobService.GetBlobUrl(secret, blobName);
-            // return Json(new { imageUrl });
-            return Content(imageUrl);
-        }
-
-
-        public async Task<IActionResult> Delete(string blobName, string RTAName)
-        {
-            var secret = _configuration["ContainerName"];
-
-            await _azureBlobService.DeleteFileAsync(secret, blobName);
+            await _azureBlobService.DeleteFileAsync(secret, blobUrl);
             return RedirectToAction(RTAName);
         }
     }
