@@ -10,10 +10,12 @@ namespace Card_Creation_Website.Controllers
     public class CardController : Controller
     {
         private readonly CardCreationContext _context;
+        private readonly IEmailProvider _emailProvider;
 
-        public CardController(CardCreationContext context)
+        public CardController(CardCreationContext context, IEmailProvider emailProvider)
         {
             _context = context;
+            _emailProvider = emailProvider;
         }
 
 
@@ -69,6 +71,25 @@ namespace Card_Creation_Website.Controllers
 
                 ViewData["Message"] = $"{cardToCreate.CardName} was added successfully!";
                 return RedirectToAction("IndexCard");
+            }
+
+            // To send a congratulations on the first card that was created associated with that account!
+            if(cardToCreate.CardId == 1)
+            {
+                // Email cannot be set just yet since legit emails aren't setup yet
+                // string email = accountCard.Email
+                // fromEmail must remain null since we don't want to be changing the sender yet
+                // Subject can be implemented
+                string subject = "First Card Made!";
+                // Content can be implemented
+                string content = "Congrats on making your card, and hopefully you make more to come. We " +
+                    "appreciate you using our service and make some really cool cards!";
+                // htmlContent can be implemented
+                string htmlContent = "<strong>We promise the best service! Please share any feedback you might have!<strong>";
+                // Later once name is added to the method SendEmailAsync();
+                // string fullName = accountCard.FirstName + " " + accountCard.LastName
+
+                await _emailProvider.SendEmailAsync(null, null, subject, content, htmlContent);
             }
 
             return View(cardToCreate);
