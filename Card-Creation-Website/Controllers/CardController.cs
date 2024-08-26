@@ -52,7 +52,7 @@ namespace Card_Creation_Website.Controllers
         public async Task<IActionResult> CreateCard(CombinedModel cardToCreate)
         {
             // This is to grab the Image Url and then apply it to the card model
-            if(cardToCreate.ImageModel != null)
+            if(cardToCreate.ImageModel.ImageFile != null)
             {
                 string imageUrl = await _blobService.UploadImageAsync(cardToCreate.ImageModel.ImageFile);
                 ViewBag.ImageUrl = imageUrl;
