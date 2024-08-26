@@ -12,7 +12,6 @@ void ConfigureServices(IServiceCollection services)
 {
     services.AddControllersWithViews();
     services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobStorage")));
-
 }
 
 

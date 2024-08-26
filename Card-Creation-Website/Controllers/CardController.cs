@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Drawing;
 using Card_Creation_Website.Services;
-using Azure.Storage.Blobs;
 
 
 namespace Card_Creation_Website.Controllers
@@ -13,7 +12,6 @@ namespace Card_Creation_Website.Controllers
     public class CardController : Controller
     {
         private readonly CardCreationContext _context;
-        private readonly AzureBlobService _blobService;
 
         public CardController(CardCreationContext context)
         {
@@ -55,6 +53,10 @@ namespace Card_Creation_Website.Controllers
 
             cardToCreate.CardModel.Account = accountCard;
             cardToCreate.CardModel.AccountId = accountCard.AccountId;
+
+
+
+
 
             // To ignore the ModelState validation on the form data for the 
             // Card class account property. This helps ignore the error that occurs since

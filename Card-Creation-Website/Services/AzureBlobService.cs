@@ -13,6 +13,7 @@ namespace Card_Creation_Website.Services
         {
             _azureBlobService = azureBlobService;
         }
+        
 
         public async Task<string> UploadFileAsync(string containerName, IFormFile file)
         {
@@ -27,18 +28,19 @@ namespace Card_Creation_Website.Services
         }
 
 
-        public async Task DownloadFileAsync(string containerName, string blobName, string downloadFilePath)
-        {
-            var containerClient = _azureBlobService.GetBlobContainerClient(containerName);
-            var blobClient = containerClient.GetBlobClient(blobName);
-            await blobClient.DownloadToAsync(downloadFilePath);
-        }
-
         public async Task DeleteFileAsync(string containerName, string blobName)
         {
             var containerClient = _azureBlobService.GetBlobContainerClient(containerName);
             var blobClient = containerClient.GetBlobClient(blobName);
             await blobClient.DeleteIfExistsAsync();
+        }
+
+
+        public string GetBlobUrl(string containerName, string blobName)
+        {
+            var containerClient = _azureBlobService.GetBlobContainerClient(containerName);
+            var blobClient = containerClient.GetBlobClient(blobName);
+            return blobClient.Uri.ToString();
         }
     }
 }
