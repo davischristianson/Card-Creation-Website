@@ -11,10 +11,12 @@ namespace Card_Creation_Website.Controllers
     public class AccountController : Controller
     {
         private readonly CardCreationContext _context;
+        private readonly IEmailProvider _emailProvider;
 
-        public AccountController(CardCreationContext context)
+        public AccountController(CardCreationContext context, IEmailProvider emailProvider)
         {
             _context = context;
+            _emailProvider = emailProvider;
         }
 
 
@@ -49,6 +51,21 @@ namespace Card_Creation_Website.Controllers
 
                 LogUserIn(registerViewModel.Email, newAccount.AccountId);
             }
+
+            // Email cannot be set just yet since legit emails aren't setup yet
+            // string email = accountCard.Email
+            // fromEmail must remain null since we don't want to be changing the sender yet
+            // Subject can be implemented
+            string subject = "Welcome from Card Creation Website!";
+            // Content can be implemented
+            string content = "Congrats on registering with us, we here at the team are delighted to have you join us!" +
+                " We look forward to the wonderful cards you create!";
+            // htmlContent can be implemented
+            string htmlContent = "<strong>We promise the best service! Please share any feedback you might have.<strong>";
+            // Later once name is added to the method SendEmailAsync();
+            // string fullName = accountCard.FirstName + " " + accountCard.LastName
+
+            await _emailProvider.SendEmailAsync(null, null, subject, content, htmlContent);
 
             // Redirect to home page
             return RedirectToAction("Index", "Home");

@@ -85,7 +85,7 @@ namespace Card_Creation_Website.Controllers
                 string content = "Congrats on making your card, and hopefully you make more to come. We " +
                     "appreciate you using our service and make some really cool cards!";
                 // htmlContent can be implemented
-                string htmlContent = "<strong>We promise the best service! Please share any feedback you might have!<strong>";
+                string htmlContent = "<strong>We promise the best service! Please share any feedback you might have.<strong>";
                 // Later once name is added to the method SendEmailAsync();
                 // string fullName = accountCard.FirstName + " " + accountCard.LastName
 
